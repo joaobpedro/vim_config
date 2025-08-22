@@ -936,7 +936,7 @@ require("lazy").setup({
 		config = function()
 			---@diagnostic disable-next-line: missing-fields
 			require("vesper").setup({
-				transparent = false, -- Boolean: Sets the background to transparent
+				transparent = true, -- Boolean: Sets the background to transparent
 				italics = {
 					comments = false, -- Boolean: Italicizes comments
 					keywords = false, -- Boolean: Italicizes keywords
@@ -1013,7 +1013,6 @@ require("lazy").setup({
 				"luadoc",
 				"markdown",
 				"markdown_inline",
-				"python",
 				"query",
 				"vim",
 				"vimdoc",
