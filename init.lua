@@ -209,11 +209,17 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("x", "<leader>p", "\"_dP")
 
 vim.o.tabstop = 4 -- A TAB character looks like 4 spaces
 vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
 vim.o.softtabstop = 4 -- Number of spaces inserted instead of a TAB character
 vim.o.shiftwidth = 4 -- Number of spaces inserted when indenting
+
+vim.o.colorcolumn = "80"
+vim.o.incsearch = true
+vim.o.termguicolors = true
+vim.o.scrolloff = 8
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -800,7 +806,7 @@ require("lazy").setup({
 				-- Disable "format_on_save lsp_fallback" for languages that don't
 				-- have a well standardized coding style. You can add additional
 				-- languages here or re-enable it for the disabled ones.
-				local disable_filetypes = { c = true, cpp = true }
+				local disable_filetypes = { c = true, cpp = true, lua = true }
 				if disable_filetypes[vim.bo[bufnr].filetype] then
 					return nil
 				else
@@ -1007,6 +1013,7 @@ require("lazy").setup({
 				"luadoc",
 				"markdown",
 				"markdown_inline",
+				"python",
 				"query",
 				"vim",
 				"vimdoc",
@@ -1040,11 +1047,11 @@ require("lazy").setup({
 	--  Uncomment any of the lines below to enable them (you will need to restart nvim).
 	--
 	-- require 'kickstart.plugins.debug',
-	-- require 'kickstart.plugins.indent_line',
+	-- require("kickstart.plugins.indent_line"),
 	-- require 'kickstart.plugins.lint',
-	-- require 'kickstart.plugins.autopairs',
+	-- require("kickstart.plugins.autopairs"),
 	-- require 'kickstart.plugins.neo-tree',
-	-- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+	-- require("kickstart.plugins.gitsigns"), -- adds gitsigns recommend keymaps
 
 	-- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
 	--    This is the easiest way to modularize your config.
