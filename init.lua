@@ -20,7 +20,7 @@
 =====================================================================
 =====================================================================
 
-What is Kickstart?
+"What" is Kickstart?
 
   Kickstart.nvim is *not* a distribution.
 
@@ -135,7 +135,7 @@ vim.o.signcolumn = "yes"
 vim.o.updatetime = 250
 
 -- Decrease mapped sequence wait time
-vim.o.timeoutlen = 300
+vim.o.timeoutlen = 1000
 
 -- Configure how new splits should be opened
 vim.o.splitright = true
@@ -885,7 +885,7 @@ require("lazy").setup({
 				-- <c-k>: Toggle signature help
 				--
 				-- See :h blink-cmp-config-keymap for defining your own keymap
-				preset = "default",
+				preset = "super-tab",
 
 				-- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
 				--    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
@@ -962,7 +962,7 @@ require("lazy").setup({
 	},
 
 	{ -- Collection of various small independent plugins/modules
-		"echasnovski/mini.nvim",
+		"echasnovski/mini.nvim", version = '*',
 		config = function()
 			-- Better Around/Inside textobjects
 			--
@@ -1035,6 +1035,10 @@ require("lazy").setup({
 		--    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
 		--    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 	},
+  {'windwp/nvim-autopairs',
+  event = 'InsertEnter',
+  opts = {},
+  },
 
 	-- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
 	-- init.lua. If you want these files, they are in the repository, so you can just download them and
