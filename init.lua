@@ -130,7 +130,7 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-vim.keymap.set("x", "<leader>p", "\"_dP")
+vim.keymap.set("x", "<leader>p", '"_dP')
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -616,6 +616,7 @@ require("lazy").setup({
 					end,
 				},
 			})
+      vim.diagnostic.config({virtual_text=false})
 
 			-- LSP servers and clients are able to communicate to each other what features they support.
 			--  By default, Neovim doesn't support everything that is in the LSP specification.
@@ -859,12 +860,9 @@ require("lazy").setup({
 				overrides = {}, -- A dictionary of group names, can be a function returning a dictionary or a table.
 				palette_overrides = {},
 			}) -- Load the colorscheme here.
-			-- Like many other themes, this one has different styles, and you could load
-			-- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
 			vim.cmd.colorscheme("vesper")
 		end,
 	},
-
 	-- Highlight todo, notes, etc in comments
 	{
 		"folke/todo-comments.nvim",
@@ -874,7 +872,8 @@ require("lazy").setup({
 	},
 
 	{ -- Collection of various small independent plugins/modules
-		"echasnovski/mini.nvim", version = '*',
+		"echasnovski/mini.nvim",
+		version = "*",
 		config = function()
 			-- Better Around/Inside textobjects
 			--
@@ -947,10 +946,7 @@ require("lazy").setup({
 		--    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
 		--    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 	},
-  {'windwp/nvim-autopairs',
-  event = 'InsertEnter',
-  opts = {},
-  },
+	{ "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
 
 	-- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
 	-- init.lua. If you want these files, they are in the repository, so you can just download them and
