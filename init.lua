@@ -161,6 +161,12 @@ end
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
+
+
+
+
+-- ############################################################################
+-- ############################################################################
 -- [[ Configure and install plugins ]]
 --
 --  To check the current status of your plugins, run
@@ -412,6 +418,47 @@ require("lazy").setup({
 			end, { desc = "[S]earch [N]eovim files" })
 		end,
 	},
+  {"ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+          local harpoon = require('harpoon')
+          harpoon:setup({})
+
+          -- basic telescope configuration
+          local conf = require("telescope.config").values
+          local function toggle_telescope(harpoon_files)
+              local file_paths = {}
+              for _, item in ipairs(harpoon_files.items) do
+                  table.insert(file_paths, item.value)
+              end
+
+              require("telescope.pickers").new({}, {
+                  prompt_title = "Harpoon",
+                  finder = require("telescope.finders").new_table({
+                      results = file_paths,
+                  }),
+                  previewer = conf.file_previewer({}),
+                  sorter = conf.generic_sorter({}),
+              }):find()
+          end
+
+          vim.keymap.set("n", "<leader>h", function() toggle_telescope(harpoon:list()) end,
+              { desc = "Open [H]arpoon window" })
+
+          vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end, {desc = "[A]dd to Harpoon"})
+          -- vim.keymap.set("n", "<leader>h", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end , {desc = "Open [H]arpoon"})
+
+          vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end, {desc = "Change to File 1"})
+          vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end, {desc = "Change to File 2"})
+          vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end, {desc = "Change to File 3"})
+          vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end, {desc = "Change to File 4"})
+          -- Toggle previous & next buffers stored within Harpoon list
+          vim.keymap.set("n", "<leader>nb", function() harpoon:list():prev() end, {desc = "Go to [N]ext [B]uffer"})
+          vim.keymap.set("n", "<leader>pb", function() harpoon:list():next() end, {desc = "Go to [P]revious [B]uffer"})
+    end
+
+  },
 
 
 	{ -- Autoformat
